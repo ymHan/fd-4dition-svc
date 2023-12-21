@@ -23,6 +23,8 @@
       "@config/*": ["./src/config/*"],
       "@filter/*": ["./src/filter/*"],
       "@common/*": ["./src/common/*"],
+      "@entities/*": ["./src/model/entities/*"],
+      "@dto/*": ["./src/model/dto/*"],
     }
   }
 }
