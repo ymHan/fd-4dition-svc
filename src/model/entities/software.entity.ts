@@ -1,28 +1,25 @@
 import { Exclude } from 'class-transformer';
-import { Entity, Column, BaseEntity, PrimaryColumn } from 'typeorm';
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class System extends BaseEntity {
-  @PrimaryColumn()
-  pcId: number;
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  pcId: string;
 
   @Column()
   nodeId: string;
 
   @Column()
-  id: string;
-
-  @Column()
   ip: string;
 
   @Column()
-  os: string;
+  name: string;
 
   @Column()
-  gpu: string;
-
-  @Column()
-  gpu_driver: string;
+  version: string;
 
   @Exclude()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
