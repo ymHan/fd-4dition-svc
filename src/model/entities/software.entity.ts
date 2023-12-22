@@ -2,11 +2,7 @@ import { Exclude } from 'class-transformer';
 import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-<<<<<<< HEAD
 export class Software extends BaseEntity {
-=======
-export class System extends BaseEntity {
->>>>>>> origin/master
   @PrimaryGeneratedColumn()
   id: number;
 
