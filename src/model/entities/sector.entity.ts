@@ -24,9 +24,6 @@ export class Sector extends BaseEntity {
   @Column()
   description: string;
 
-  @Column({ type: 'bool', nullable: false })
-  isDeleted: boolean;
-
   @Exclude()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public createdAt: Date;

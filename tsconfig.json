@@ -25,6 +25,7 @@
       "@common/*": ["./src/common/*"],
       "@entities/*": ["./src/model/entities/*"],
       "@dto/*": ["./src/model/dto/*"],
+      "@api/*": ["./src/api/*"],
     }
   }
 }

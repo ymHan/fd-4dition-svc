@@ -1,12 +1,5 @@
 import { IsString } from 'class-validator';
-import { InitBasicAdd } from '@proto/fdition.pb';
-export class InitBasicAddDto implements InitBasicAdd {
+export class InitBasicAddDto {
   @IsString()
-  public readonly id: string;
-
-  @IsString()
-  latitude: string;
-
-  @IsString()
-  longitude: string;
+  public readonly data: string;
 }

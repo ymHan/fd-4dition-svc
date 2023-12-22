@@ -25,4 +25,4 @@ import { InitService } from './init.service';
   controllers: [InitController],
   providers: [InitService],
 })
-export class SectorModule {}
+export class InitModule {}
