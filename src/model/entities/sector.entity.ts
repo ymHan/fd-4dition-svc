@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import { Entity, Column, PrimaryColumn, BaseEntity } from 'typeorm';
 
 @Entity()
@@ -24,15 +23,9 @@ export class Sector extends BaseEntity {
   @Column()
   description: string;
 
-  @Exclude()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public createdAt: Date;
 
-  @Exclude()
   @Column({ type: 'timestamp', nullable: true })
   public updatedAt: Date;
-
-  @Exclude()
-  @Column({ type: 'timestamp', nullable: true })
-  public deletedAt: Date;
 }

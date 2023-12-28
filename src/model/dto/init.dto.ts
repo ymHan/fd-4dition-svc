@@ -3,9 +3,9 @@ import { Type } from 'class-transformer';
 
 export class locationDTO {
   @IsString()
-  public readonly latitude: string;
+  public readonly lat: string;
   @IsString()
-  public readonly longitude: string;
+  public readonly long: string;
 }
 
 export class pcDTO {
@@ -43,13 +43,7 @@ export class cameraDTO {
 
 export class gimbalDTO {
   @IsString()
-  public readonly id: string;
-  @IsString()
   public readonly ip: string;
-  @IsString()
-  public readonly model: string;
-  @IsString()
-  public readonly fw: string;
 }
 
 export class switchDTO {
@@ -65,33 +59,49 @@ export class switchDTO {
 
 export class InitDto {
   @IsString()
-  public readonly nodeId: string;
+  nodeId: string;
+
+  @IsString()
+  public readonly type: string;
+
+  @IsString()
+  public readonly command: string;
 
   @IsObject()
   @Type(() => locationDTO)
   readonly location: locationDTO;
 
-  @IsObject()
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @Type(() => pcDTO)
-  readonly pc: pcDTO[];
+  pc: pcDTO[];
 
-  @IsObject()
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @Type(() => swDTO)
   readonly sw: swDTO[];
 
-  @IsObject()
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @Type(() => cameraDTO)
   readonly camera: cameraDTO[];
 
-  @IsObject()
-  @Type(() => gimbalDTO)
+  @Type()
   readonly gimbal: gimbalDTO[];
 
-  @IsObject()
   @ValidateNested()
   @Type(() => switchDTO)
   readonly switch: switchDTO[];
+}
+
+export class SystemDTO {
+  @IsString()
+  public readonly nodeId: string;
+  @IsString()
+  public readonly id: string;
+  @IsString()
+  public readonly ip: string;
+  @IsString()
+  public readonly os: string;
+  @IsString()
+  public readonly gpu: string;
+  @IsString()
+  public readonly gpuDriver: string;
 }

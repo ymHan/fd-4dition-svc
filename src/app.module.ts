@@ -1,21 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormConfig = require('./config/ormconfig');
-import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
-// import { EventsModule } from '@root/events/events.module';
 import { InitModule } from '@api/init/init.module';
+import { StatusModule } from '@api/status/status.module';
+
+import ormConfig = require('./config/ormconfig');
+
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : '.env.prod',
-      ignoreEnvFile: process.env.NODE_ENV === 'prod',
-    }),
     TypeOrmModule.forRoot(ormConfig[0]),
+    //TypeOrmModule.forRoot(ormConfig[1]),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     InitModule,
-    //EventsModule,
+    StatusModule,
   ],
 })
 export class AppModule {}

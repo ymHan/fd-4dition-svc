@@ -1,9 +1,8 @@
-import { Exclude } from 'class-transformer';
-import { Entity, Column, BaseEntity, PrimaryColumn } from 'typeorm';
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class System extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   pcId: number;
 
   @Column()
@@ -22,13 +21,11 @@ export class System extends BaseEntity {
   gpu: string;
 
   @Column()
-  gpu_driver: string;
+  gpuDriver: string;
 
-  @Exclude()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   public createdAt: Date;
 
-  @Exclude()
   @Column({ type: 'timestamp', nullable: true })
   public updatedAt: Date;
 }

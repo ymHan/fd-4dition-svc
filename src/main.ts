@@ -1,9 +1,8 @@
 import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { WsAdapter } from '@nestjs/platform-ws';
-import { AppModule } from './app.module';
-import { join } from 'path';
 import { Transport } from '@nestjs/microservices';
+import { join } from 'path';
+import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './filter';
 import { protobufPackage } from '@proto/fdition.pb';
 
@@ -19,9 +18,15 @@ async function bootstrap() {
       },
     },
   );
-  app.useWebSocketAdapter(new WsAdapter(app));
+
   app.useGlobalFilters(new HttpExceptionFilter());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
 
   await app.listen();
 }
