@@ -2,7 +2,6 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
-
 export = [
   {
     type: process.env.DEFAULT_DB_TYPE,
@@ -11,7 +10,7 @@ export = [
     database: process.env.DEFAULT_DATABASE,
     username: process.env.DEFAULT_DB_USER,
     password: process.env.DEFAULT_DB_PASSWORD,
-    entities: [process.env.DEFAULT_DB_ENTITIES],
+    entities: ['dist/**/*.entity{.ts,.js}'],
     synchronize: true,
   } as TypeOrmModuleOptions,
   {
@@ -20,7 +19,7 @@ export = [
     host: process.env.SECOND_DB_HOST,
     port: parseInt(process.env.SECOND_DB_PORT, 10),
     database: process.env.SECOND_DATABASE,
-    entities: [process.env.SECOND_DB_ENTITIES],
+    entities: ['dist/**/*.entity{.ts,.js}'],
     synchronize: true,
   } as TypeOrmModuleOptions,
 ];

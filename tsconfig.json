@@ -26,6 +26,9 @@
       "@entities/*": ["./src/model/entities/*"],
       "@dto/*": ["./src/model/dto/*"],
       "@api/*": ["./src/api/*"],
+      "@model/*": ["./src/model/*"],
+      "@schema/*": ["./src/model/schemas/*"],
+      "@database/*": ["./src/database/*"],
     }
   }
 }

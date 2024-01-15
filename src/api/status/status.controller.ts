@@ -8,7 +8,7 @@ export class StatusController {
   @Inject(StatusService)
   private readonly statusService: StatusService;
 
-  @GrpcMethod(FDITION_SERVICE_NAME, 'inputStatus')
+  @GrpcMethod(FDITION_SERVICE_NAME, 'initStatus')
   @UsePipes(new ValidationPipe({ transform: true }))
   initStatus(payload: any): Promise<InputStatusResponse> {
     return this.statusService.InitStatus(payload);

@@ -1,10 +1,15 @@
-import { Injectable, HttpStatus } from '@nestjs/common';
-
-import { InputStatusResponse } from '@proto/fdition.pb';
+import { Inject, Injectable, HttpStatus } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Status } from '@model/interfaces/status.interface';
+import { InputStatusResponse, InputStatusRequest } from '@proto/fdition.pb';
 
 @Injectable()
 export class StatusService {
-  public async InitStatus(data: any): Promise<InputStatusResponse> {
+  constructor(
+    @Inject('STATUS_MODEL') private readonly statusModel: Model<Status>) {}
+  public async InitStatus(
+    data: InputStatusRequest,
+  ): Promise<InputStatusResponse> {
     try {
       if (data.command !== 'info') {
         return {
@@ -14,7 +19,7 @@ export class StatusService {
         };
       }
 
-      console.log(data);
+      this.statusModel.create(data);
 
       return {
         status: HttpStatus.OK,
